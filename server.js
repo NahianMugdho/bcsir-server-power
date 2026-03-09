@@ -298,11 +298,40 @@ app.get('/api/latest', async (req, res) => {
     }
 });
 
-// Get all data (for Excel export)
+// // Get all data (for Excel export)
+// app.get('/api/all', async (req, res) => {
+//     try {
+//         const data = await collection
+//             .find()
+//             .sort({ timestamp: -1 })
+//             .toArray();
+
+//         res.json({
+//             success: true,
+//             count: data.length,
+//             data: data
+//         });
+//     } catch (error) {
+//         res.status(500).json({
+//             success: false,
+//             error: error.message
+//         });
+//     }
+// });
+// Get all data (with optional date range for charts + Excel export)
 app.get('/api/all', async (req, res) => {
     try {
+        const { from, to } = req.query
+        let query = {}
+
+        if (from || to) {
+            query.timestamp = {}
+            if (from) query.timestamp.$gte = new Date(from)
+            if (to)   query.timestamp.$lte = new Date(to)
+        }
+
         const data = await collection
-            .find()
+            .find(query)
             .sort({ timestamp: -1 })
             .toArray();
 
@@ -318,7 +347,6 @@ app.get('/api/all', async (req, res) => {
         });
     }
 });
-
 // Get latest value for each topic
 app.get('/api/current', async (req, res) => {
     try {
