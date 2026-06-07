@@ -166,11 +166,12 @@ require('dotenv').config();
 // ===================== Configuration ===================
 const MQTT_BROKER = process.env.MQTT_BROKER || 'mqtt://test.mosquitto.org';
 const MQTT_TOPICS = [
-    'BCSIRbus',
-    'BCSIRshunt',
-    'BCSIRload',
-    'BCSIRcurrent',
-    'BCSIRpower'
+    // 'BCSIRbus',
+    // 'BCSIRshunt',
+    // 'BCSIRload',
+    // 'BCSIRcurrent',
+    // 'BCSIRpower'
+    'BCSIRVoltage'
 ];
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
