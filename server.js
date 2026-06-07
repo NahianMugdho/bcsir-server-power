@@ -169,7 +169,7 @@ const MQTT_TOPICS = [
     // 'BCSIRbus',
     // 'BCSIRshunt',
     // 'BCSIRload',
-    // 'BCSIRcurrent',
+    'BCSIRcurrent',
     // 'BCSIRpower'
     'BCSIRVoltage'
 ];
